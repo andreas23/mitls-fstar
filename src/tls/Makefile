@@ -56,9 +56,13 @@ HACL_INCLUDES=$(addprefix --include ,$(KREMLIN_HOME)/kremlib $(HACL_HOME)/specs 
 FSTAR_INCLUDE_PATHS=--include $(CDIR) --include $(PDIR) --include $(LCDIR)/fst $(HACL_INCLUDES) --include $(FFI_HOME)
 
 OCAMLPKG=-package batteries,stdint,fileutils,sqlite3,zarith,fstarlib
-OCAMLPATH=$(FSTAR_HOME)/bin
 OCAMLOPTS=$(OCAMLPKG) -thread -w -a
 OCAML_PATHS=test $(ODIR) $(FSTAR_HOME)/ucontrib/Platform/ml $(FSTAR_HOME)/ucontrib/CoreCrypto/ml $(FSTAR_HOME)/ucontrib/CoreCrypto/ml/db $(LCDIR) $(FFI_HOME)
+
+ifeq ($(OS),Windows_NT)
+  OCAML_PATHS:=$(foreach p,$(OCAML_PATHS),$(shell cygpath -m $(p)))
+endif
+
 OCAML_INCLUDE_PATHS=$(addprefix -I ,$(OCAML_PATHS))
 
 # Since quite a few people forget to set that in their path... eventually,

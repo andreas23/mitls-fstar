@@ -12,4 +12,4 @@ ffi.o FFICallbacks.cmx: FFICallbacks.ml ffi.c FFICallbacks.cmi
 	$(OCAMLOPT) -package batteries,zarith -c FFICallbacks.ml -ccopt -Wall -ccopt -fPIC ffi.c
 
 FFICallbacks.cmxa: FFICallbacks.cmx ffi.o
-	OCAMLPATH="$(FSTAR_HOME)/bin" ocamlfind mklib -package batteries,zarith,fstarlib -o FFICallbacks FFICallbacks.cmx ffi.o
+	OCAMLPATH="$(OCAMLPATH)" ocamlfind mklib -package batteries,zarith,fstarlib -o FFICallbacks FFICallbacks.cmx ffi.o

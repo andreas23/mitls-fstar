@@ -76,7 +76,7 @@ $(ODIR)/FFIRegister.cmi $(ODIR)/FFIRegister.cmx: $(FFI_HOME)/FFIRegister.ml $(OD
 	$(ODIR)/TestAPI.ml \
 	$(ODIR)/TestFFI.ml \
 	$(ODIR)/TestQUIC.ml
-	OCAMLPATH=$(FSTAR_HOME)/bin ocamlfind dep -native -slash -all $(OCAMLPKG) $(OCAML_INCLUDE_PATHS) $(addsuffix /*.ml,$(OCAML_PATHS)) > .depend-ML
+	OCAMLPATH=$(OCAMLPATH) ocamlfind dep -native -slash -all $(OCAMLPKG) $(OCAML_INCLUDE_PATHS) $(addsuffix /*.ml,$(OCAML_PATHS)) > .depend-ML
 
 -include .depend-ML
 
